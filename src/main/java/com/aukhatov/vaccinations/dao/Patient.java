@@ -6,7 +6,7 @@ public class Patient {
     private String firstName;
     private String lastName;
     private String patronymic;
-    private LocalDate date;
+    private LocalDate birthDate;
     private long iian;
     private enum gender {male, female}
 
@@ -34,12 +34,12 @@ public class Patient {
         this.patronymic = patronymic;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDate getBirthDate() {
+        return birthDate;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
     }
 
     public long getIian() {
