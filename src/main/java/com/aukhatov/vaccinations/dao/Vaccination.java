@@ -3,9 +3,18 @@ package com.aukhatov.vaccinations.dao;
 import java.time.LocalDate;
 
 public class Vaccination {
+    private long id;
     private long iian;
     private String medicineName;
     private LocalDate dateExecute;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public long getIian() {
         return iian;
