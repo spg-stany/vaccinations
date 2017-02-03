@@ -1,5 +1,6 @@
 package com.aukhatov.vaccinations.web;
 
+import com.aukhatov.vaccinations.dao.Patient;
 import com.aukhatov.vaccinations.service.BaseService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,9 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
-
-import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/vaccinations")
@@ -24,28 +22,15 @@ public class MainController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String index(Map<String, Object> model) {
-
+    public String index() {
         logger.debug("index() is executed!");
-
-        model.put("title", baseService.getTitle(""));
-        model.put("msg", baseService.getDesc());
-
-        return "index";
+        return "This REST service!";
     }
 
-    @RequestMapping(value = "/hello/{name:.+}", method = RequestMethod.GET)
-    public ModelAndView hello(@PathVariable("name") String name) {
 
-        logger.debug("hello() is executed - $name {}", name);
-
-        ModelAndView model = new ModelAndView();
-        model.setViewName("index");
-
-        model.addObject("title", baseService.getTitle(name));
-        model.addObject("msg", baseService.getDesc());
-
-        return model;
-
+    @RequestMapping(value = "/patient/{iian}", method = RequestMethod.GET)
+    public Patient getPatient(@PathVariable("iian") String iian) {
+        logger.debug("Get Patient by IIAN: {}", iian);
+        return new Patient(Long.valueOf(iian));
     }
 }

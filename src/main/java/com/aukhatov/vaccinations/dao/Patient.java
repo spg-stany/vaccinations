@@ -10,6 +10,10 @@ public class Patient {
     private long iian;
     private enum gender {male, female}
 
+    public Patient(long iian) {
+        this.iian = iian;
+    }
+
     public String getFirstName() {
         return firstName;
     }
