@@ -1,12 +1,17 @@
 package com.aukhatov.vaccinations.web;
 
 import com.aukhatov.vaccinations.dao.Patient;
+import com.aukhatov.vaccinations.dao.Vaccination;
 import com.aukhatov.vaccinations.service.BaseService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import sun.invoke.util.VerifyAccess;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/vaccinations")
@@ -14,6 +19,7 @@ public class MainController {
     private final Logger logger = LoggerFactory.getLogger(MainController.class);
     private final BaseService baseService;
     private static final String PATIENT_PATH = "/patient/";
+    private static final String VACCINATION_PATH = "/patient/vaccination/";
 
     @Autowired
     public MainController(BaseService baseService) {
@@ -49,5 +55,24 @@ public class MainController {
     public Patient updatePatient(@RequestBody Patient patient) {
         logger.debug("Update Patient: {}", patient.getIian());
         return patient;
+    }
+
+    @RequestMapping(value = VACCINATION_PATH + "{iian}", method = RequestMethod.GET)
+    public List<Vaccination> getVaccinations(@PathVariable String iian) {
+        logger.debug("Get vaccinations by Patient: {}", iian);
+        List<Vaccination> vaccinations = new ArrayList<>();
+        return vaccinations;
+    }
+
+    @RequestMapping(value = VACCINATION_PATH, method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Vaccination addVaccination(@RequestBody Vaccination vaccination) {
+        logger.debug("Add new vaccination id: {}", vaccination.getId());
+        return vaccination;
+    }
+
+    @RequestMapping(value = VACCINATION_PATH + "{id}", method = RequestMethod.DELETE)
+    public String deleteVaccination(@PathVariable String id) {
+        logger.debug("Delete vaccination id: {}", id);
+        return "Deleted.";
     }
 }
