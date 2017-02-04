@@ -17,7 +17,7 @@ public class VaccinationDaoBean implements VaccinationDao {
     }
 
     @Override
-    public void deleteVaccination(long iian) {
+    public void deleteVaccination(long id) {
 
     }
 }
