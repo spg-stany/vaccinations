@@ -1,18 +1,24 @@
 package com.aukhatov.vaccinations.dao;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.time.LocalDate;
 
 @Entity
 public class Patient {
+    @Column(name = "first_name", nullable = false)
     private String firstName;
+    @Column(name = "last_name", nullable = false)
     private String lastName;
+    @Column(name = "patronymic")
     private String patronymic;
+    @Column(name = "birth_date", nullable = false)
     private LocalDate birthDate;
     @Id
     private long iian;
-    private enum gender {male, female}
+//    @Column(name = "gender", nullable = false)
+//    private enum gender {male, female}
 
     public Patient() {
     }
