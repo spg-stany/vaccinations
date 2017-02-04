@@ -3,6 +3,7 @@ package com.aukhatov.vaccinations.web;
 import com.aukhatov.vaccinations.dao.Patient;
 import com.aukhatov.vaccinations.dao.Vaccination;
 import com.aukhatov.vaccinations.service.BaseService;
+import com.aukhatov.vaccinations.service.PatientService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,8 @@ public class MainController {
     private final BaseService baseService;
     private static final String PATIENT_PATH = "/patient/";
     private static final String VACCINATION_PATH = "/patient/vaccination/";
+    @Autowired
+    private PatientService patientService;
 
     @Autowired
     public MainController(BaseService baseService) {
@@ -40,8 +43,8 @@ public class MainController {
 
     @RequestMapping(value = PATIENT_PATH, method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public Patient addPatient(@RequestBody Patient patient) {
-        logger.debug("Add new Patient: {}", patient.getIian());
-        return patient;
+        logger.info("Add new Patient: {}", patient.getIian());
+        return patientService.addPatient(patient);
     }
 
     @RequestMapping(value = PATIENT_PATH + "{iian}", method = RequestMethod.DELETE)

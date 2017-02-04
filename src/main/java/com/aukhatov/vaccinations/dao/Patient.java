@@ -4,18 +4,22 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.sql.Date;
-import java.time.LocalDate;
 
 @Entity
 public class Patient {
+
     @Column(name = "first_name", nullable = false)
     private String firstName;
+
     @Column(name = "last_name", nullable = false)
     private String lastName;
+
     @Column(name = "patronymic")
     private String patronymic;
+
     @Column(name = "birth_date", nullable = false)
     private Date birthDate;
+
     @Id
     private long iian;
 //    @Column(name = "gender", nullable = false)
