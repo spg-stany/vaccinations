@@ -4,7 +4,6 @@ import org.hibernate.ejb.HibernatePersistence;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -15,7 +14,6 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = {"com.aukhatov.vaccinations.dao.repository"})
 @ComponentScan("com.aukhatov.vaccinations")
 public class DataBaseConfig {
     private static final String PROPERTY_NAME_DATABASE_DRIVER = "org.postgresql.Driver";
@@ -26,7 +24,7 @@ public class DataBaseConfig {
     private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "org.hibernate.dialect.PostgreSQL9Dialect";
     private static final String PROPERTY_NAME_HIBERNATE_SHOW_SQL = "true";
     private static final String PROPERTY_NAME_ENTITYMANAGER_PACKAGES_TO_SCAN = "com.aukhatov.vaccinations.dao";
-    private static final String PROPERTY_NAME_HIBERNATE_HBM2DDL_AUTO = "create-drop";
+    private static final String PROPERTY_NAME_HIBERNATE_HBM2DDL_AUTO = "create";
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {

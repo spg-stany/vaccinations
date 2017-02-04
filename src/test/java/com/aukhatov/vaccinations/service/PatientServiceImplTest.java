@@ -13,12 +13,9 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-
 import java.time.LocalDate;
 
-import static org.junit.Assert.*;
-
-//@DirtiesContext
+@DirtiesContext
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = DataBaseConfig.class)
 @WebAppConfiguration
