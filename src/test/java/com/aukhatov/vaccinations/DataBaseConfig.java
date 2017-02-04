@@ -21,7 +21,7 @@ public class DataBaseConfig {
     private static final String PROPERTY_NAME_DATABASE_USERNAME = "postgres";
     private static final String PROPERTY_NAME_DATABASE_PASSWORD = "SuperUser";
 
-    private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "org.hibernate.dialect.PostgreSQL9Dialect";
+    private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "org.hibernate.dialect.PostgreSQLDialect";
     private static final String PROPERTY_NAME_HIBERNATE_SHOW_SQL = "true";
     private static final String PROPERTY_NAME_ENTITYMANAGER_PACKAGES_TO_SCAN = "com.aukhatov.vaccinations.dao";
     private static final String PROPERTY_NAME_HIBERNATE_HBM2DDL_AUTO = "create";
