@@ -15,10 +15,5 @@ public class Main {
             PatientService patientService = context.getBean(PatientService.class);
             patientService.addPatient(new Patient(222));
         }
-        try {
-            Class<?> name = Class.forName("org.postgresql.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
     }
 }
