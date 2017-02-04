@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Service("patientService")
 @ComponentScan("com.aukhatov.vaccinations.dao")
 public class PatientServiceImpl implements PatientService {
 

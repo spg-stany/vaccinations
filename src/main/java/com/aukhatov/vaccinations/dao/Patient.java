@@ -3,6 +3,7 @@ package com.aukhatov.vaccinations.dao;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.sql.Date;
 import java.time.LocalDate;
 
 @Entity
@@ -14,7 +15,7 @@ public class Patient {
     @Column(name = "patronymic")
     private String patronymic;
     @Column(name = "birth_date", nullable = false)
-    private LocalDate birthDate;
+    private Date birthDate;
     @Id
     private long iian;
 //    @Column(name = "gender", nullable = false)
@@ -51,11 +52,11 @@ public class Patient {
         this.patronymic = patronymic;
     }
 
-    public LocalDate getBirthDate() {
+    public Date getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(LocalDate birthDate) {
+    public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
 
