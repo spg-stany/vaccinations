@@ -27,7 +27,7 @@ public class Patient {
     private String iian;
 
     @Column(name = "gender", nullable = false)
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     private Gender gender;
 
     public long getId() {
