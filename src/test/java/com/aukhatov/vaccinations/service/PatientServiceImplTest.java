@@ -1,6 +1,7 @@
 package com.aukhatov.vaccinations.service;
 
 import com.aukhatov.vaccinations.DataBaseConfig;
+import com.aukhatov.vaccinations.dao.Gender;
 import com.aukhatov.vaccinations.dao.Patient;
 import org.junit.Assert;
 import org.junit.Before;
@@ -38,28 +39,31 @@ public class PatientServiceImplTest {
     @Test
     @Transactional
     public void testSavePatient() {
-        Patient patient = new Patient(2);
+        Patient patient = new Patient();
+        patient.setIian("32123456785");
         patient.setFirstName("Arthur");
         patient.setLastName("Aukhatov");
         patient.setBirthDate(Date.valueOf(LocalDate.of(1990, 8, 20)));
+        patient.setGender(Gender.MALE);
         patientService.addPatient(patient);
     }
 
     @Test
     @Transactional
     public void testDeletePatient() {
-        Patient patient = new Patient(1L);
+        Patient patient = new Patient();
         patient.setFirstName("Arthur");
         patient.setLastName("Aukhatov");
         patient.setBirthDate(Date.valueOf(LocalDate.of(1990, 8, 20)));
+        patient.setGender(Gender.MALE);
         patientService.addPatient(patient);
-        patientService.deletePatient(1L);
+        patientService.deletePatient("");
     }
 
     @Test
     @Transactional
     public void testEditPatient() {
-        Patient patient = new Patient(1L);
+        Patient patient = new Patient();
         patient.setFirstName("Arthur");
         patient.setLastName("Aukhatov");
         patient.setBirthDate(Date.valueOf(LocalDate.of(1990, 8, 20)));

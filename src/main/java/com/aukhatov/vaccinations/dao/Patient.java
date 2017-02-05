@@ -1,12 +1,15 @@
 package com.aukhatov.vaccinations.dao;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
+@Table(name = "patient")
 public class Patient {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
     @Column(name = "first_name", nullable = false)
     private String firstName;
@@ -20,16 +23,19 @@ public class Patient {
     @Column(name = "birth_date", nullable = false)
     private Date birthDate;
 
-    @Id
-    private long iian;
-//    @Column(name = "gender", nullable = false)
-//    private enum gender {male, female}
+    @Column(name = "iian", length = 11, nullable = false, unique = true)
+    private String iian;
 
-    public Patient() {
+    @Column(name = "gender", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
+
+    public long getId() {
+        return id;
     }
 
-    public Patient(long iian) {
-        this.iian = iian;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -64,11 +70,25 @@ public class Patient {
         this.birthDate = birthDate;
     }
 
-    public long getIian() {
+    public String getIian() {
         return iian;
     }
 
-    public void setIian(long iian) {
+    public void setIian(String iian) {
         this.iian = iian;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("[iian:{}, firstName:{}, lastName:{}, patronymic:{}, berthDate:{}]",
+                iian, firstName, lastName, patronymic, birthDate);
     }
 }

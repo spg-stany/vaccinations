@@ -22,13 +22,13 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public void deletePatient(long iian) {
-        patientRepository.delete(iian);
+    public void deletePatient(String iian) {
+        patientRepository.deleteByIian(iian);
     }
 
     @Override
-    public Patient getPatient(long iian) {
-        return patientRepository.findOne(iian);
+    public Patient getPatient(String iian) {
+        return patientRepository.findByIian(iian);
     }
 
     @Override

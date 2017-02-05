@@ -37,31 +37,38 @@ public class MainController {
 
     @RequestMapping(value = PATIENT_PATH + "{iian}", method = RequestMethod.GET)
     public Patient getPatient(@PathVariable("iian") String iian) {
-        logger.debug("Get Patient by IIAN: {}", iian);
-        return new Patient(Long.valueOf(iian));
+        logger.info("Get Patient by IIAN: {}", iian);
+        return patientService.getPatient(iian);
     }
 
     @RequestMapping(value = PATIENT_PATH, method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public Patient addPatient(@RequestBody Patient patient) {
-        logger.info("Add new Patient: {}", patient.getIian());
+        logger.info("Add new Patient: {}", patient);
         return patientService.addPatient(patient);
     }
 
     @RequestMapping(value = PATIENT_PATH + "{iian}", method = RequestMethod.DELETE)
     public String deletePatient(@PathVariable("iian") String iian) {
-        logger.debug("Patient deleted by IIAN: {}", iian);
+        logger.info("Patient deleted by IIAN: {}", iian);
+        patientService.deletePatient(iian);
         return "Deleted.";
     }
 
     @RequestMapping(value = PATIENT_PATH, method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
     public Patient updatePatient(@RequestBody Patient patient) {
-        logger.debug("Update Patient: {}", patient.getIian());
-        return patient;
+        logger.info("Update Patient: {}", patient);
+        return patientService.editPatient(patient);
+    }
+
+    @RequestMapping(value = PATIENT_PATH, method = RequestMethod.GET)
+    public List<Patient> getAllPatients() {
+        logger.info("Get all Patients...");
+        return patientService.getAllPatients();
     }
 
     @RequestMapping(value = VACCINATION_PATH + "{iian}", method = RequestMethod.GET)
     public List<Vaccination> getVaccinations(@PathVariable String iian) {
-        logger.debug("Get vaccinations by Patient: {}", iian);
+        logger.info("Get vaccinations by Patient: {}", iian);
         List<Vaccination> vaccinations = new ArrayList<>();
         return vaccinations;
     }

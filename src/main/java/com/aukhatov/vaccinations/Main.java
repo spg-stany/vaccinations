@@ -10,10 +10,5 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  */
 public class Main {
     public static void main(String[] args) {
-        try(AnnotationConfigApplicationContext context =
-                new AnnotationConfigApplicationContext(SpringRootConfig.class)){
-            PatientService patientService = context.getBean(PatientService.class);
-            patientService.addPatient(new Patient(222));
-        }
     }
 }

@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface PatientService {
     Patient addPatient(Patient patient);
-    void deletePatient(long iian);
-    Patient getPatient(long iian);
+    void deletePatient(String iian);
+    Patient getPatient(String iian);
     Patient editPatient(Patient patient);
     List<Patient> getAllPatients();
 }
