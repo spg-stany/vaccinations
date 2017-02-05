@@ -23,3 +23,40 @@
 * Получение списка всех прививок пациента по СНИЛС: GET http://localhost:8080/vaccinations/patient/12345678912/vaccination/
 * Добавление прививки для пациента по СНИЛС: POST http://localhost:8080/vaccinations/patient/12345678912/vaccination/ JSON {...}
 * Удаление прививки: DELETE http://localhost:8080/vaccinations/patient/12345678912/vaccination/1
+
+### Examples
+#### Add new Patient
+
+POST http://localhost:8080/vaccinations/patient/
+
+{
+	"iian" : "54341234911",
+	"firstName" : "Arthur",
+	"lastName" : "Aukhatov",
+	"birthDate" : "1990-08-20",
+	"gender" : "MALE"
+}
+
+#### Get Patient
+
+GET http://localhost:8080/vaccinations/patient/54341234911
+
+#### Get Patient list
+
+GET http://localhost:8080/vaccinations/patient/
+
+#### Edit Patient
+
+PUT http://localhost:8080/vaccinations/patient/
+
+{
+	"iian" : "54341234911",
+	"firstName" : "Arthur",
+	"lastName" : "Aukhatov",
+	"birthDate" : "2017-01-31",
+	"gender" : "MALE"
+}
+
+#### Delete Patient
+
+DELETE http://localhost:8080/vaccinations/patient/54341234911
