@@ -52,25 +52,29 @@ public class PatientServiceImplTest {
     @Transactional
     public void testDeletePatient() {
         Patient patient = new Patient();
+        patient.setIian("32123456785");
         patient.setFirstName("Arthur");
         patient.setLastName("Aukhatov");
         patient.setBirthDate(Date.valueOf(LocalDate.of(1990, 8, 20)));
         patient.setGender(Gender.MALE);
         patientService.addPatient(patient);
-        patientService.deletePatient("");
+        patientService.deletePatient("32123456785");
     }
 
     @Test
     @Transactional
     public void testEditPatient() {
         Patient patient = new Patient();
+        patient.setIian("32123456785");
         patient.setFirstName("Arthur");
         patient.setLastName("Aukhatov");
         patient.setBirthDate(Date.valueOf(LocalDate.of(1990, 8, 20)));
+        patient.setGender(Gender.MALE);
         patientService.addPatient(patient);
         patient.setFirstName("Joshua");
         patient.setLastName("Bloch");
         patient.setBirthDate(Date.valueOf(LocalDate.of(1961, 8, 28)));
+        patient.setGender(Gender.MALE);
         Patient editPatient = patientService.editPatient(patient);
         Assert.assertEquals(patient.getFirstName(), editPatient.getFirstName());
         Assert.assertEquals(patient.getLastName(), editPatient.getLastName());
