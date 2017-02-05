@@ -24,9 +24,14 @@ import java.time.LocalDate;
 @ContextConfiguration(classes = DataBaseConfig.class)
 @WebAppConfiguration
 public class PatientServiceImplTest {
+
     @Resource
     private EntityManagerFactory emf;
     protected EntityManager em;
+
+    private static final String IIAN = "32123456785";
+    private static final String FIRST_NAME = "Arthur";
+    private static final String LAST_NAME = "Aukhatov";
 
     @Resource
     private PatientService patientService;
@@ -40,9 +45,9 @@ public class PatientServiceImplTest {
     @Transactional
     public void testSavePatient() {
         Patient patient = new Patient();
-        patient.setIian("32123456785");
-        patient.setFirstName("Arthur");
-        patient.setLastName("Aukhatov");
+        patient.setIian(IIAN);
+        patient.setFirstName(FIRST_NAME);
+        patient.setLastName(LAST_NAME);
         patient.setBirthDate(Date.valueOf(LocalDate.of(1990, 8, 20)));
         patient.setGender(Gender.MALE);
         patientService.addPatient(patient);
@@ -52,22 +57,22 @@ public class PatientServiceImplTest {
     @Transactional
     public void testDeletePatient() {
         Patient patient = new Patient();
-        patient.setIian("32123456785");
-        patient.setFirstName("Arthur");
-        patient.setLastName("Aukhatov");
+        patient.setIian(IIAN);
+        patient.setFirstName(FIRST_NAME);
+        patient.setLastName(LAST_NAME);
         patient.setBirthDate(Date.valueOf(LocalDate.of(1990, 8, 20)));
         patient.setGender(Gender.MALE);
         patientService.addPatient(patient);
-        patientService.deletePatient("32123456785");
+        patientService.deletePatient(IIAN);
     }
 
     @Test
     @Transactional
     public void testEditPatient() {
         Patient patient = new Patient();
-        patient.setIian("32123456785");
-        patient.setFirstName("Arthur");
-        patient.setLastName("Aukhatov");
+        patient.setIian(IIAN);
+        patient.setFirstName(FIRST_NAME);
+        patient.setLastName(LAST_NAME);
         patient.setBirthDate(Date.valueOf(LocalDate.of(1990, 8, 20)));
         patient.setGender(Gender.MALE);
         patientService.addPatient(patient);
