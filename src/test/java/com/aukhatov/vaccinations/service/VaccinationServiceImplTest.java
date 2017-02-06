@@ -1,8 +1,7 @@
-package com.aukhatov.vaccinations.service.impl;
+package com.aukhatov.vaccinations.service;
 
 import com.aukhatov.vaccinations.DataBaseConfig;
 import com.aukhatov.vaccinations.dao.Vaccination;
-import com.aukhatov.vaccinations.service.VaccinationService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
