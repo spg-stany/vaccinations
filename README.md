@@ -1,6 +1,8 @@
-# Simple RESTful service "Vaccinations"
+# Simple RESTful service "Vaccinations" base on Spring MVC + Data Jpa
 
 Основная цель которого стандартные операции: создание, чтение, обновление и удаление записей. Формат принимаемых данных JSON.
+
+DBMS: I used PostgreSQL 9 and you have to [postgresql-9.4-1206-jdbc42.jar](https://jdbc.postgresql.org/download/postgresql-9.4-1206-jdbc42.jar) file put to lib/ folder for Tomcat app server.
 
 ## Entity
 
