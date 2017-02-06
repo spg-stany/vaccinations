@@ -2,13 +2,17 @@ package com.aukhatov.vaccinations.web;
 
 import com.aukhatov.vaccinations.dao.Patient;
 import com.aukhatov.vaccinations.dao.Vaccination;
+import com.aukhatov.vaccinations.exception.InvalidDataException;
 import com.aukhatov.vaccinations.service.BaseService;
 import com.aukhatov.vaccinations.service.PatientService;
 import com.aukhatov.vaccinations.service.VaccinationService;
+import com.aukhatov.vaccinations.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -43,7 +47,12 @@ public class MainController {
     }
 
     @RequestMapping(value = PATIENT_PATH, method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Patient addPatient(@RequestBody Patient patient) {
+    public Patient addPatient(@RequestBody Patient patient) throws InvalidDataException {
+        if (EntityUtils.patientIsEmpty(patient)) {
+            logger.error("Input data is null");
+            throw new InvalidDataException("Input data is NULL!");
+        }
+
         logger.info("Add new Patient: {}", patient);
         return patientService.addPatient(patient);
     }
@@ -84,5 +93,11 @@ public class MainController {
         logger.info("Delete vaccination id: {}", id);
         vaccinationService.deleteVaccination(Long.valueOf(id));
         return "Deleted.";
+    }
+
+    @ExceptionHandler(InvalidDataException.class)
+    public ResponseEntity<String> invalidDataExceptionHandler(Exception e) {
+        logger.info("Exception handled...");
+        return new ResponseEntity<String>("Input data is NULL!", HttpStatus.OK);
     }
 }
