@@ -49,10 +49,9 @@ public class MainController {
     @RequestMapping(value = PATIENT_PATH, method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public Patient addPatient(@RequestBody Patient patient) throws InvalidDataException {
         if (EntityUtils.patientIsEmpty(patient)) {
-            logger.error("Input data is null");
-            throw new InvalidDataException("Input data is NULL!");
+            logger.error("Try to put null object.");
+            throw new InvalidDataException("Input data is empty!");
         }
-
         logger.info("Add new Patient: {}", patient);
         return patientService.addPatient(patient);
     }
@@ -83,7 +82,11 @@ public class MainController {
     }
 
     @RequestMapping(value = "/patient/{iian:[\\d]+}/vaccination/", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Vaccination addVaccination(@RequestBody Vaccination vaccination) {
+    public Vaccination addVaccination(@RequestBody Vaccination vaccination) throws InvalidDataException {
+        if (EntityUtils.vaccinationIsEmpty(vaccination)) {
+            logger.error("Try to put null object.");
+            throw new InvalidDataException("Input data is empty!");
+        }
         logger.info("Add new vaccination id: {}", vaccination.getId());
         return vaccinationService.addVaccination(vaccination);
     }
@@ -98,6 +101,6 @@ public class MainController {
     @ExceptionHandler(InvalidDataException.class)
     public ResponseEntity<String> invalidDataExceptionHandler(Exception e) {
         logger.info("Exception handled...");
-        return new ResponseEntity<String>("Input data is NULL!", HttpStatus.OK);
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.OK);
     }
 }
