@@ -2,7 +2,15 @@
 
 Основная цель которого стандартные операции: создание, чтение, обновление и удаление записей. Формат принимаемых данных JSON.
 
-**DBMS**: I used PostgreSQL 9 and you have to [postgresql-9.4-1206-jdbc42.jar](https://jdbc.postgresql.org/download/postgresql-9.4-1206-jdbc42.jar) file put to lib/ folder for Tomcat app server.
+##Configuration
+
+Application property file location *src/main/resources/app.properties*
+
+DBMS: I used PostgreSQL 9 and you have to [postgresql-9.4-1206-jdbc42.jar](https://jdbc.postgresql.org/download/postgresql-9.4-1206-jdbc42.jar) file put to lib/ folder for Tomcat app server.
+
+**The database from property file must exist.**
+
+`CREATE DATABASE vaccinations`
 
 ## Entity
 
@@ -15,20 +23,20 @@
 
 * Получение списка всех пациентов: **GET** http://localhost:8080/vaccinations/patient/
 * Получение пациента по СНИЛС: **GET** http://localhost:8080/vaccinations/patient/12345678912
-* Создание пациента: **POST** http://localhost:8080/vaccinations/patient/ JSON{...}
-* Редактирование пациента: **PUT** http://localhost:8080/vaccinations/patient/ JSON{...}
+* Создание пациента: **POST** http://localhost:8080/vaccinations/patient/
+* Редактирование пациента: **PUT** http://localhost:8080/vaccinations/patient/
 * Удаление пациента: **DELETE** http://localhost:8080/vaccinations/patient/12345678912
 
 ### Vaccination
 
 * Получение списка всех прививок пациента по СНИЛС: **GET** http://localhost:8080/vaccinations/patient/12345678912/vaccination/
-* Добавление прививки для пациента по СНИЛС: **POST** http://localhost:8080/vaccinations/patient/12345678912/vaccination/ JSON {...}
+* Добавление прививки для пациента по СНИЛС: **POST** http://localhost:8080/vaccinations/patient/12345678912/vaccination/
 * Удаление прививки: **DELETE** http://localhost:8080/vaccinations/patient/12345678912/vaccination/1
 
 ### Examples
 #### Add new Patient
 
-**POST** http://localhost:8080/vaccinations/patient/
+http://localhost:8080/vaccinations/patient/
 
 `{
 	"iian" : "54341234911",
@@ -38,17 +46,17 @@
 	"gender" : "MALE"
 }`
 
-#### Get Patient
+#### Get Patient by IIAN
 
-**GET** http://localhost:8080/vaccinations/patient/54341234911
+http://localhost:8080/vaccinations/patient/54341234911
 
 #### Get Patient list
 
-**GET** http://localhost:8080/vaccinations/patient/
+http://localhost:8080/vaccinations/patient/
 
 #### Edit Patient
 
-**PUT** http://localhost:8080/vaccinations/patient/
+http://localhost:8080/vaccinations/patient/
 
 `{
 	"iian" : "54341234911",
@@ -58,6 +66,6 @@
 	"gender" : "MALE"
 }`
 
-#### Delete Patient
+#### Delete Patient by IIAN
 
-**DELETE** http://localhost:8080/vaccinations/patient/54341234911
+http://localhost:8080/vaccinations/patient/54341234911
