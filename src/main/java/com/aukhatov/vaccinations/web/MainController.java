@@ -15,7 +15,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -41,7 +40,11 @@ public class MainController {
 
 
     @RequestMapping(value = PATIENT_PATH + "{iian}", method = RequestMethod.GET)
-    public Patient getPatient(@PathVariable("iian") String iian) {
+    public Patient getPatient(@PathVariable("iian") String iian) throws InvalidDataException {
+        if (iian.length() != 11) {
+            logger.error("Patient iian length [{}] invalid.", iian);
+            throw new InvalidDataException("InvalidDataException: IIAN length must be 11.");
+        }
         logger.info("Get Patient by IIAN: {}", iian);
         return patientService.getPatient(iian);
     }
@@ -63,8 +66,13 @@ public class MainController {
         return "Deleted.";
     }
 
-    @RequestMapping(value = PATIENT_PATH, method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Patient updatePatient(@RequestBody Patient patient) {
+    @RequestMapping(value = PATIENT_PATH + "{iian:[\\d]+}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Patient updatePatient(@PathVariable String iian, @RequestBody Patient patient) throws InvalidDataException {
+        if (iian.length() != 11) {
+            logger.error("Patient iian length [{}] invalid.", iian);
+            throw new InvalidDataException("InvalidDataException: IIAN length must be 11.");
+        }
+
         logger.info("Update Patient: {}", patient);
         return patientService.editPatient(patient);
     }

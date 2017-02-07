@@ -33,7 +33,9 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public Patient editPatient(Patient patient) {
-        return patientRepository.saveAndFlush(patient);
+        patientRepository.updatePatientByIian(patient.getIian(), patient.getFirstName(), patient.getLastName(),
+                patient.getPatronymic(), patient.getBirthDate(), patient.getGender());
+        return  patient;
     }
 
     @Override
